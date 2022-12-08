@@ -1,5 +1,7 @@
 ﻿using DesafiosTarget.Dto;
+using Newtonsoft.Json;
 using System.Linq;
+using System.Reflection;
 
 namespace DesafiosTarget
 {

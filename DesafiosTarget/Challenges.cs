@@ -82,7 +82,10 @@ namespace DesafiosTarget
 
         public FaturamentoDistribuidoraDTO faturamentoDiarioDistribuidora()
         {
-            using (StreamReader r = new StreamReader(@".\Arquivos\dados.json"))
+            string workingDirectory = Environment.CurrentDirectory;
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+
+            using (StreamReader r = new StreamReader(projectDirectory + @".\Arquivos\dados.json"))
             {
                 FaturamentoDistribuidoraDTO faturamentoDistribuidoraDTO = new();
                 int diasAcimaDaMediaMensal = 0;
@@ -115,9 +118,12 @@ namespace DesafiosTarget
 
         public List<DadosDistribuidoraPorEstadoDTO> percentualEstados()
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+
             List<DadosDistribuidoraPorEstadoDTO> dadosDistribuidoraPorEstadoDTO = new();
 
-            using (StreamReader r = new StreamReader(@".\Arquivos\desafioQuatro.json"))
+            using (StreamReader r = new StreamReader(projectDirectory + @".\Arquivos\desafioQuatro.json"))
             {
                 string json = r.ReadToEnd();
                 List<FaturamentoPorEstadoDTO> dadosDistribuidora = JsonConvert.DeserializeObject<List<FaturamentoPorEstadoDTO>>(json);
@@ -134,7 +140,7 @@ namespace DesafiosTarget
                     {
                         Estado = item.Estado,
                         Porcentagem = porcentagemEstado
-                    }); ;
+                    });
 
                 }
 
